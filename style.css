@@ -1,104 +1,84 @@
--- style.css --
 body {
-    font-family: sans-serif;
-    margin: 20px;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
 }
 
 .container {
-    background-color: #fff;
-    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%;
-    max-width: 600px;
 }
 
 h1 {
+    color: #2c3e50;
     text-align: center;
-    color: #333;
-    margin-bottom: 20px;
 }
 
 .course-row {
     display: flex;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 10px;
+    margin-bottom: 10px;
     align-items: center;
 }
 
-.course-row label {
-    width: 120px;
-    text-align: left;
-    font-weight: bold;
+.course-row input, .course-row select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
 }
 
-.course-row input[type="text"],
-.course-row select {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+.course-name {
+    flex: 2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
 }
 
 button {
-    padding: 12px 20px;
-    background-color: #007bff;
+    padding: 10px 15px;
+    background-color: #3498db;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease;
-    margin-top: 15px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
 }
 
-#add-course-btn {
-    background-color: #28a745;
-}
-
-#add-course-btn:hover {
-    background-color: #1e7e34;
-}
-
-.result-area {
-    margin-top: 30px;
+#result-container {
+    margin-top: 20px;
     padding: 15px;
-    border: 1px solid #ddd;
+    background-color: #f8f9fa;
     border-radius: 4px;
-    background-color: #f9f9f9;
     text-align: center;
 }
 
-.result-area h2 {
-    color: #333;
-    margin-top: 0;
-}
-
-#gpa-value {
-    font-size: 18px;
+#gpa-result {
+    font-size: 24px;
     font-weight: bold;
-    color: #007bff;
+    color: #2c3e50;
+    margin-top: 10px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
     .course-row {
         flex-direction: column;
-        align-items: stretch;
     }
-
-    .course-row label {
+    
+    .course-row input, .course-row select {
         width: 100%;
-        text-align: left;
-        margin-bottom: 5px;
     }
 }
