@@ -1,80 +1,84 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const gpaForm = document.getElementById('gpa-form');
-    const calculateBtn = document.getElementById('calculate-btn');
-    const gpaResultDiv = document.getElementById('gpa-result');
-    const gpaValueDisplay = document.getElementById('gpa-value');
-    const addCourseBtn = document.getElementById('add-course-btn');
-    const newCoursesDiv = document.getElementById('new-courses');
-    let courseCount = 3; // Start with 3 initial rows
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+}
 
-    // Function to convert letter grade to GPA points
-    function getGradePoints(grade) {
-        switch (grade.toUpperCase()) {
-            case 'A': return 4;
-            case 'B': return 3;
-            case 'C': return 2;
-            case 'D': return 1;
-            case 'F': return 0;
-            default: return null; // Indicate invalid grade
-        }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+}
+
+.course-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.course-row input, .course-row select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+}
+
+.course-name {
+    flex: 2;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+#result-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#gpa-result {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 10px;
+}
+
+@media (max-width: 600px) {
+    .course-row {
+        flex-direction: column;
     }
-
-    // Function to calculate GPA
-    function calculateGPA() {
-        const gradeInputs = document.querySelectorAll('#gpa-form select[name^="grade"]');
-        let totalPoints = 0;
-        let validCourseCount = 0;
-        let allGradesEntered = true;
-
-        gradeInputs.forEach(input => {
-            const grade = input.value.trim();
-            if (grade === "") {
-                allGradesEntered = false;
-            } else {
-                const points = getGradePoints(grade);
-                if (points !== null) {
-                    totalPoints += points;
-                    validCourseCount++;
-                }
-            }
-        });
-
-        if (!allGradesEntered && validCourseCount > 0) {
-            gpaValueDisplay.textContent = "Please enter all grades.";
-            return;
-        } else if (!allGradesEntered && validCourseCount === 0) {
-            gpaValueDisplay.textContent = "";
-            return;
-        }
-
-        if (validCourseCount > 0) {
-            const gpa = (totalPoints / validCourseCount).toFixed(2);
-            gpaValueDisplay.textContent = gpa;
-        } else {
-            gpaValueDisplay.textContent = "No valid grades entered.";
-        }
+    
+    .course-row input, .course-row select {
+        width: 100%;
     }
-
-    // Event listener for the Calculate GPA button
-    calculateBtn.addEventListener('click', calculateGPA);
-
-    // Event listener for the Add Another Course button
-    addCourseBtn.addEventListener('click', function() {
-        courseCount++;
-        const newRow = document.createElement('div');
-        newRow.classList.add('course-row');
-        newRow.innerHTML = `
-            <label for="course${courseCount}">Course ${courseCount}:</label>
-            <input type="text" id="course${courseCount}" name="course${courseCount}" placeholder="Course Name">
-            <select id="grade${courseCount}" name="grade${courseCount}">
-                <option value="">-- Select Grade --</option>
-                <option value="A">A</option>
-                <option value="B">B</option>
-                <option value="C">C</option>
-                <option value="D">D</option>
-                <option value="F">F</option>
-            </select>
-        `;
-        newCoursesDiv.appendChild(newRow);
-    });
-});
+}
